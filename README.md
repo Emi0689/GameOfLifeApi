@@ -31,4 +31,13 @@ The API has 4 endpoints and works (swagger available)
     
 Requirements:
 
-You need to have .NET 7 SDK installed in the chosen server environment to work.
+It use memory and SQLite to work. So BEFORE to start:
+
+1. You need to have .NET 7 SDK installed in the chosen server environment to work.
+
+2. In a new terminal, inside of the folder "GameOfLifeApi" you need to run these commands:  
+
+ - dotnet ef migrations add InitialCreate  
+ - dotnet ef database update  
+
+To create the SQLite DB.  
