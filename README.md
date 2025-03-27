@@ -9,7 +9,7 @@ The API has 4 endpoints and works (swagger available)
 2. PUT /api/{id}/next  
     i. Description: Returns the new state of an existing board  
     ii. Parameters:  
-        -    id: the id of a board created to get the new state 
+        -    id: the id of a board created to get the new state  
     iii. Return: The board updated  
 3. PUT /api/{id}/next/{x}  
     i. Description: Returns x number of states away for board  
@@ -26,7 +26,7 @@ The API has 4 endpoints and works (swagger available)
 5. DELETE /api/{id}  
     i. Description: Delete the board by Id  
     ii. Parameters:  
-        -    id: the id of a board created to get the new state 
+        -    id: the id of a board created to get the new state  
     iii. Return: OK-200  
     
 Requirements:
