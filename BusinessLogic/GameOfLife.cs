@@ -1,6 +1,6 @@
 ﻿namespace GameOfLifeApi.BusinessLogic;
 
-public class GameOfLife
+public class GameOfLife: IGameOfLife
 {
     public int[,] NextState(int[,] board)
     {
