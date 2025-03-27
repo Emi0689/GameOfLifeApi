@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/GameOfLifeApi/gameoflife.db
+/GameOfLifeApi/Migrations
+/GameOfLifeApi/gameoflife.db-shm
+/GameOfLifeApi/gameoflife.db-wal
