@@ -31,7 +31,7 @@ The API has 4 endpoints and works (swagger available)
     
 Requirements:
 
-It use memory and SQLite to work. So BEFORE to start:
+The application uses memory and SQLite to run. So BEFORE you start:
 
 1. You need to have .NET 7 SDK installed in the chosen server environment to work.
 
