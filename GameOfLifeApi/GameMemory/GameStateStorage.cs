@@ -5,7 +5,7 @@ using System.Text.Json;
 
 public class GameStateStorage : IGameStateStorage
 {
-    //We use memory and SQLite for the persistency
+    //We use memory and SQLite for the persistence
     private readonly ConcurrentDictionary<Guid, int[,]> _boards = new();
 
     private int[,] LoadFromDatabase(Guid id)
