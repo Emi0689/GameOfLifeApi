@@ -3,28 +3,29 @@ This is an API that represents “The Game of Life - Conway”.
 The API has 4 endpoints and works (swagger available)
 
 1. POST /api/board 
-    Description: Allows uploading a new board state, returns id of board
-    Parameter: New Board to create (Example: [[1],[1]])
-    Return: The id of new board created to be used in the others endpoints
+    i. Description: Allows uploading a new board state, returns id of board
+    ii. Parameter: New Board to create (Example: [[1],[1]])
+    iii. Return: The id of new board created to be used in the others endpoints
 2. PUT /api/{id}/next
-    Description: Returns the new state of an existing board
-    Parameter: the id of a board created to get the new state
-    Return: 
+    i. Description: Returns the new state of an existing board
+    ii. Parameter: the id of a board created to get the new state
+    iii. Return: The board updated
 3. PUT /api/{id}/next/{x}
-    Description: Returns x number of states away for board
-    Parameter: 
+    i. Description: Returns x number of states away for board
+    ii. Parameter: 
                 id: the id of a board created to get the new state
                 x: The number of generation to be executed
-    Return: The board updated with "x" generations
+    iii. Return: The board updated with "x" generations
 4. PUT /api/{id}/final/{maxAttempts} 
-    Description: Returns final state for board. If board doesn't go to conclusion after x number of attempts, returns error
-    Parameter: 
+    i. Description: Returns final state for board. If board doesn't go to conclusion after x number of attempts, returns error
+    ii. Parameter: 
             id: the id of a board created to get the new state
             maxAttempts: The number of generation to be executed for the final form
-    Return: The board updated with "maxAttempts" generations
+    iii. Return: The board updated with "maxAttempts" generations
 5. DELETE /api/{id}
-    Description: Delete the board by Id
-    Return: OK-200
+    i. Description: Delete the board by Id
+    ii. id: the id of a board created to get the new state
+    iii. Return: OK-200
     
 Requirements:
 
