@@ -60,25 +60,16 @@ public class GameOfLife: IGameOfLife
     {
         ValidateBoard(board);
 
-        int[,] previousState;
+        int[,] previousState = board;
         int[,] currentBoard = board;
 
         for (int i = 0; i < generations; i++)
         {
             previousState = (int[,])currentBoard.Clone(); 
             currentBoard = NextState(currentBoard);
-
-            if (AreBoardsEqual(previousState, currentBoard))
-            {
-                if (finalStep)
-                {
-                    throw new("The board did not reach a stable state within the given attempts.");
-                }
-                return currentBoard;
-            }
         }
 
-        if (finalStep)
+        if (finalStep && !AreBoardsEqual(previousState, currentBoard))
         {
             throw new("The board did not reach a stable state within the given attempts.");
         }
@@ -112,11 +103,5 @@ public class GameOfLife: IGameOfLife
 
         if (rows > 100 || cols > 100)
             throw new ArgumentException("The board can not be larger than 100x100.");
-
-        for (int i = 0; i < rows; i++)
-        {
-            if (rows != cols)
-                throw new ArgumentException("The board should be rectangular (all rows of the same size).");
-        }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 
 public class InMemoryGameStateStorage : IGameStateStorage
 {
-    //We use memory. If we want to persist the states, we need to use a database. Ej: SQlite
+    //We use memory. If we want to persist the states, we need to use a database. Ej: SQlite or distruited cache
     private readonly ConcurrentDictionary<Guid, int[,]> _boards = new();
 
     public Guid SaveState(int[,] board)
