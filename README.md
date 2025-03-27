@@ -1,6 +1,6 @@
 This is an API that represents “The Game of Life - Conway”.
 
-The API has 4 endpoints (swagger available)
+The API has 5 endpoints (swagger available)
 
 1. POST /api/board  
     i. Description: Allows uploading a new board state, returns id of board  
