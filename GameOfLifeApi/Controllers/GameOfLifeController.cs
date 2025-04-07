@@ -33,9 +33,9 @@ public class GameOfLifeController : ControllerBase
             var id = _gameStateStorage.SaveState(board);
             return Ok(new { id });
         }
-        catch (ArgumentException ex)
+        catch (Exception ex)
         {
-            return BadRequest(new { error = ex.Message });
+            return StatusCode(500, new { error = ex.Message });
         }
     }
 
@@ -47,14 +47,21 @@ public class GameOfLifeController : ControllerBase
     [HttpPut("{id}/next")]
     public IActionResult GetNextState(Guid id)
     {
-        var state = _gameStateStorage.GetState(id);
-        if (state == null)
-            return NotFound(new { error = "Board not found" });
+        try
+        {
+            var state = _gameStateStorage.GetState(id);
+            if (state == null)
+                return NotFound(new { error = "Board not found" });
 
-        var nextState = _game.NextState(state);
-        _gameStateStorage.UpdateState(id, nextState);  // update the board in memory
+            var nextState = _game.NextState(state);
+            _gameStateStorage.UpdateState(id, nextState);  // update the board in memory
 
-        return Ok(new { state = Helper.ConvertToList(nextState) }); // I convert to list because net doesn't work very well with int[,]
+            return Ok(new { state = Helper.ConvertToList(nextState) }); // I convert to list because net doesn't work very well with int[,]
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = ex.Message });
+        }
     }
 
     /// <summary>
@@ -66,14 +73,21 @@ public class GameOfLifeController : ControllerBase
     [HttpPut("{id}/next/{x}")]
     public IActionResult GetXGenerations(Guid id, int x)
     {
-        var state = _gameStateStorage.GetState(id);
-        if (state == null)
-            return NotFound(new { error = "Board not found" });
+        try
+        {
+            var state = _gameStateStorage.GetState(id);
+            if (state == null)
+                return NotFound(new { error = "Board not found" });
 
-        var futureState = _game.EvolveXGenerations(state, x);
-        _gameStateStorage.UpdateState(id, futureState);
+            var futureState = _game.EvolveXGenerations(state, x);
+            _gameStateStorage.UpdateState(id, futureState);
 
-        return Ok(new { state = Helper.ConvertToList(futureState) });
+            return Ok(new { state = Helper.ConvertToList(futureState) });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = ex.Message });
+        }
     }
 
     /// <summary>
@@ -85,14 +99,21 @@ public class GameOfLifeController : ControllerBase
     [HttpPut("{id}/final/{maxAttempts}")]
     public IActionResult GetFinalState(Guid id, int maxAttempts)
     {
-        var state = _gameStateStorage.GetState(id);
-        if (state == null)
-            return NotFound(new { error = "Board not found" });
+        try
+        {
+            var state = _gameStateStorage.GetState(id);
+            if (state == null)
+                return NotFound(new { error = "Board not found" });
 
-        var futureState = _game.EvolveXGenerations(state, maxAttempts, true);
-        _gameStateStorage.UpdateState(id, futureState);
+            var futureState = _game.EvolveXGenerations(state, maxAttempts, true);
+            _gameStateStorage.UpdateState(id, futureState);
 
-        return Ok(new { state = Helper.ConvertToList(futureState) });
+            return Ok(new { state = Helper.ConvertToList(futureState) });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = ex.Message });
+        }
     }
 
     /// <summary>
@@ -105,7 +126,7 @@ public class GameOfLifeController : ControllerBase
         var state = _gameStateStorage.RemoveState(id);
 
         if (state)
-            return Ok();
+            return NoContent();
         else
             return BadRequest();
     }

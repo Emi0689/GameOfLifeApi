@@ -39,7 +39,7 @@ public class GameOfLife: IGameOfLife
         {
             foreach (int directionY in directions)
             {
-                if (directionX == 0 && directionY == 0)
+                if (directionX == 0 && directionY == 0) //same place
                 {  
                     continue; 
                 }
@@ -47,7 +47,9 @@ public class GameOfLife: IGameOfLife
                 int nx = x + directionX;
                 int ny = y + directionY;
 
-                if (nx >= 0 && nx < rows && ny >= 0 && ny < cols && board[nx, ny] == 1)
+                if (nx >= 0 && nx < rows //inside of the board - Row
+                    && ny >= 0 && ny < cols //inside of the board - Cal
+                    && board[nx, ny] == 1) //this cell is alive
                 {
                     count++;
                 }
