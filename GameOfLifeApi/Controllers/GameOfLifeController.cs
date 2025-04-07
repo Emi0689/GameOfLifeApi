@@ -120,7 +120,7 @@ public class GameOfLifeController : ControllerBase
     /// Delete the board by Id
     /// </summary>
     /// <param name="id">the id of a board created</param>
-    /// <returns>OK-200</returns>
+    /// <returns>204-NoContent</returns>
     [HttpDelete("{id}")]
     public IActionResult Delete(Guid id) {
         var state = _gameStateStorage.RemoveState(id);
